@@ -1,0 +1,12 @@
+inventory = {}
+
+inventory.countItem(itemName)
+  itemCount = 0
+  for i=1,16,1 do
+    detail = turtle.getItemDetail(i)
+    if detail.name == itemName then
+      itemCount += detail.count
+    end
+  end
+  return itemCount
+end
