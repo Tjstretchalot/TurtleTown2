@@ -3,12 +3,11 @@ position = {}
 position.save = function()
   local w = fs.open('pos_cache', 'w')
   
-  print(position.x)
-  print(position.y)
-  print(position.z)
   w.writeLine(tostring(position.x))
   w.writeLine(tostring(position.y))
   w.writeLine(tostring(position.z))
+  w.writeLine(tostring(position.direction))
+  
   w.close()
 end
 
@@ -19,6 +18,7 @@ position.load = function()
     position.x = tonumber(r.readLine())
     position.y = tonumber(r.readLine())
     position.z = tonumber(r.readLine())
+    position.direction = tonumber(r.readLine())
 
     r.close()
   end
