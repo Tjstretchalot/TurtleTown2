@@ -14,5 +14,11 @@ position.load = function()
     
     local line = fs.readLine()
     position.x = line.gmatch("=")[2];
+    line = fs.readLine()
+    position.y = line.gmatch("=")[2];
+    line = fs.readLine()
+    position.z = line.gmatch("=")[2];
   end
 end
+
+position.load()
