@@ -10,3 +10,22 @@ inventory.countItem(itemName)
   end
   return itemCount
 end
+
+inventory.haveItem(itemName, count)
+  count = count or 1
+  return inventory.countItem(itemName) >= count
+end
+
+inventory.selectItem(itemName)
+  -- Check if it's already selected for speed
+  if turtle.getItemDetail().name == itemName
+    return
+  end
+  for i=1,16,1 do
+    detail = turtle.getItemDetail(i)
+    if detail.name == itemName then
+      turtle.select(i)
+      return
+    end
+  end
+end
