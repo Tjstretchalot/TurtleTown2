@@ -1,24 +1,24 @@
 inventory = {}
 
-inventory.countItem(itemName)
+inventory.countItem = function(itemName)
   itemCount = 0
   for i=1,16,1 do
     detail = turtle.getItemDetail(i)
     if detail.name == itemName then
-      itemCount += detail.count
+      itemCount = itemCount + detail.count
     end
   end
   return itemCount
 end
 
-inventory.haveItem(itemName, count)
+inventory.haveItem = function(itemName, count)
   count = count or 1
   return inventory.countItem(itemName) >= count
 end
 
-inventory.selectItem(itemName)
+inventory.selectItem = function(itemName)
   -- Check if it's already selected for speed
-  if turtle.getItemDetail().name == itemName
+  if turtle.getItemDetail().name == itemName then
     return
   end
   for i=1,16,1 do
