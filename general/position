@@ -1,0 +1,18 @@
+position = {}
+
+position.save = function()
+  local w = fs.open('pos_cache', 'w')
+  
+  w.writeLine('x='..position.x)
+  w.writeLine('y='..position.y)
+  w.writeLine('z='..position.z)
+end
+
+position.load = function() 
+  if fs.exists('pos_cache')
+    local r = fs.open('pos_cache', 'r')
+    
+    local line = fs.readLine()
+    position.x = line.gmatch("=")[2];
+  end
+end
