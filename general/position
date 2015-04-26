@@ -1,3 +1,11 @@
+- Positions are relative to the center of the storage tower (which is, in hand, the center of the city)
+- 
+- Direction is a number like so:
+-   0 - Positive X
+-   1 - Positive Z
+-   2 - Negative X
+-   3 - Negative Z
+
 position = {}
 
 position.save = function()
