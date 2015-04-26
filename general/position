@@ -3,21 +3,24 @@ position = {}
 position.save = function()
   local w = fs.open('pos_cache', 'w')
   
-  w.writeLine('x='..position.x)
-  w.writeLine('y='..position.y)
-  w.writeLine('z='..position.z)
+  print(position.x)
+  print(position.y)
+  print(position.z)
+  w.writeLine(tostring(position.x))
+  w.writeLine(tostring(position.y))
+  w.writeLine(tostring(position.z))
+  w.close()
 end
 
 position.load = function() 
-  if fs.exists('pos_cache')
+  if fs.exists('pos_cache') then
     local r = fs.open('pos_cache', 'r')
     
-    local line = fs.readLine()
-    position.x = line.gmatch("=")[2];
-    line = fs.readLine()
-    position.y = line.gmatch("=")[2];
-    line = fs.readLine()
-    position.z = line.gmatch("=")[2];
+    position.x = tonumber(r.readLine())
+    position.y = tonumber(r.readLine())
+    position.z = tonumber(r.readLine())
+
+    r.close()
   end
 end
 

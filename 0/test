@@ -1,1 +1,12 @@
- 
+dofile('position')
+
+position.x = 1
+position.y = 1
+position.z = 1
+
+position.save()
+
+print("saved")
+print(position.x)
+print(position.y)
+print(position.z)
