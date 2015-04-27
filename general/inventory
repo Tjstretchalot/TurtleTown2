@@ -19,15 +19,16 @@ end
 inventory.selectItem = function(itemName)
   -- Check if it's already selected for speed
   if turtle.getItemDetail().name == itemName then
-    return
+    return true
   end
   for i=1,16,1 do
     detail = turtle.getItemDetail(i)
     if detail and detail.name == itemName then
       turtle.select(i)
-      return
+      return true
     end
   end
+  return false
 end
 
 inventory.combineStacks = function()
