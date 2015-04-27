@@ -1,0 +1,28 @@
+local function doDig()
+  turtle.digUp()
+  turtle.digDown()
+end
+
+local function doRow(length)
+  for i=1,length-1,1 do
+    doDig()
+    move.forward()
+  end
+  doDig()
+end
+
+local function doSquare(length)
+  doRow(length)
+  for i=1, length-1, 1 do
+    face.west()
+    move.forward()
+    doDig()
+    if i % 2 == 1 then face.north()
+    else face.south() end
+    doRow()
+  end
+end
+
+move.gotoXZY(0, -51, -35)
+face.south()
+doSquare(16)
