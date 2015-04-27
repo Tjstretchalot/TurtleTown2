@@ -2,7 +2,6 @@ move = {}
 
 move.forward = function(times)
   times = times or 1
-  position.load()
   for i=1,times,1 do
     while not turtle.forward() do end
     if position.direction == 0 then position.x = position.x + 1
