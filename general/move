@@ -1,3 +1,5 @@
+move = {}
+
 move.forward = function(times)
   times = times or 1
   for i=1,times,1 do
