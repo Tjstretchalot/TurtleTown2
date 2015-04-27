@@ -26,7 +26,7 @@ end
 move.up = function(times)
   times = times or 1
   for i=1,times,1 do
-    while not turtle.up() do end
+    while not turtle.up() do turtle.digUp() end
     position.y = position.y + 1
     position.save()
   end
@@ -35,7 +35,7 @@ end
 move.down = function(times)
   times = times or 1
   for i=1,times,1 do
-    while not turtle.down() do end
+    while not turtle.down() do turtle.digDown() end
     position.y = position.y - 1
     position.save()
   end
