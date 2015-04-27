@@ -33,24 +33,18 @@ end
 inventory.combineStacks = function()
   -- Combine stacks
 
-  details = []
-
+  local details = {}
   for i=1,16,1 do
     details[i] = turtle.getItemDetail(i)
   end
 
-  duplicateDetails = []
-
   for i=1,16,1 do
-    for int j=1,16,1 do
-      if i==j then continue end
-
-      if details[i] and details[j] and details[i].name == details[j].name then
-        for k=1,#duplicateDetails,1 do
-          if duplicateDetails[k] and duplicateDetails[k].name == details[i].name then
-            
-	  end
-	end
+    for j=i+1,16,1 do 
+      if ((not details[i]) and details[j]) or (details[i] and details[j] and details[i].name == details[j].name) then
+        turtle.select(j)
+	turtle.transferTo(i)
+	details[i] = turtle.getItemDetail(i)
+	details[j] = turtle.getItemDetail(j)
       end
     end
   end
