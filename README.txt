@@ -25,3 +25,10 @@ Plan of acquiring each:
 7. Charcoal    - Smelting turtle
 8. Ender Pearl - ??
 
+
+Major necessary buildings:
+
+1. Tree farm   - Log collection (mostly for charcoal)
+2. Smeltery    - Turn logs into charcoal, sand into glass, etc. A giant automated furnace room
+3. Bank        - Store all the things, retrieve all of the things
+4. Mine        - Fancy hole in the ground
