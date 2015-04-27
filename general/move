@@ -8,6 +8,7 @@ move.forward = function(times)
     elseif position.direction == 1 then position.z = position.z + 1
     elseif position.direction == 2 then position.x = position.x - 1
     else position.z = position.z - 1 end
+    position.save()
   end
 end
 
@@ -121,25 +122,25 @@ move.gotoZ = function(goalZ)
 end
 
 move.gotoYZX = function(goalX, goalY, goalZ)
-  gotoX(goalY)
-  gotoY(goalZ)
-  gotoZ(goalX)
+  move.gotoX(goalY)
+  move.gotoY(goalZ)
+  move.gotoZ(goalX)
 end
 
 move.gotoYXZ = function(goalX, goalY, goalZ)
-  gotoY(goalY)
-  gotoX(goalX)
-  gotoZ(goalZ)
+  move.gotoY(goalY)
+  move.gotoX(goalX)
+  move.gotoZ(goalZ)
 end
 
 move.gotoXZY = function(goalX, goalY, goalZ)
-  gotoX(goalX)
-  gotoZ(goalZ)
-  gotoY(goalY)
+  move.gotoX(goalX)
+  move.gotoZ(goalZ)
+  move.gotoY(goalY)
 end
 
 move.gotoZXY = function(goalX, goalY, goalZ)
-  gotoZ(goalZ)
-  gotoX(goalX)
-  gotoY(goalY)
+  move.gotoZ(goalZ)
+  move.gotoX(goalX)
+  move.gotoY(goalY)
 end

@@ -23,7 +23,7 @@ inventory.selectItem = function(itemName)
   end
   for i=1,16,1 do
     detail = turtle.getItemDetail(i)
-    if detail.name == itemName then
+    if detail and detail.name == itemName then
       turtle.select(i)
       return
     end

@@ -1,28 +1,58 @@
+dofile('position')
+dofile('move')
+dofile('inventory')
+
+local function dumpInventory()
+  local oldX = position.x
+  local oldY = position.y
+  local oldZ = position.z
+  move.gotoXZY(0, 0, -35)
+  face.north()
+  for i=1,16,1 do
+    while turtle.getItemCount(i) > 0 do
+      turtle.select(i)
+      turtle.drop()
+    end
+  end
+  turtle.select(1)
+  move.gotoYZX(oldX, oldY, oldZ)
+end
+
 local function doDig()
   turtle.digUp()
+  if turtle.getItemCount(16) > 0 then dumpInventory() end
   turtle.digDown()
+  if turtle.getItemCount(16) > 0 then dumpInventory() end
 end
 
 local function doRow(length)
-  for i=1,length-1,1 do
+  for i=1,length,1 do
     doDig()
     move.forward()
   end
   doDig()
 end
 
-local function doSquare(length)
+local function doSquare(length, width)
   doRow(length)
-  for i=1, length-1, 1 do
+  for i=1, width, 1 do
     face.west()
     move.forward()
     doDig()
     if i % 2 == 1 then face.north()
     else face.south() end
-    doRow()
+    doRow(length)
   end
 end
 
-move.gotoXZY(0, -51, -35)
-face.south()
-doSquare(16)
+turtle.select(1)
+if position.y ~= -51 then
+  move.gotoXZY(0, -51, -35)
+  face.south()
+  doSquare(16, 16)
+else
+  local curRow = position.x
+  move.gotoZ(-35)
+  face.south()
+  doSquare(16, 16 - curRow)
+end
