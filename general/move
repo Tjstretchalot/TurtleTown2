@@ -1,9 +1,7 @@
-move = {}
-
 move.forward = function(times)
   times = times or 1
   for i=1,times,1 do
-    while not turtle.forward() do end
+    while not turtle.forward() do turtle.dig() end
     if position.direction == 0 then position.x = position.x + 1
     elseif position.direction == 1 then position.z = position.z + 1
     elseif position.direction == 2 then position.x = position.x - 1
@@ -94,4 +92,52 @@ end
 move.west = function(times)
   face.west()
   move.forward(times)
+end
+
+move.gotoX = function(goalX)
+  if position.x < goalX then
+    move.east(goalX - position.x)
+  elseif goalX < position.x then
+    move.west(position.x - goalX)
+  end
+end
+
+move.gotoY = function(goalY)
+  if position.y < goalY then
+    move.up(goalY - position.y)
+  elseif goalY - position.y then
+    move.down(position.y - goalY)
+  end
+end
+
+move.gotoZ = function(goalZ) 
+  if position.z < goalZ then
+    move.south(goalZ - position.z)
+  elseif goalZ < position.z then
+    move.north(position.z - goalZ)
+  end
+end
+
+move.gotoYZX(goalX, goalY, goalZ)
+  gotoX(goalY)
+  gotoY(goalZ)
+  gotoZ(goalX)
+end
+
+move.gotoYXZ(goalX, goalY, goalZ)
+  gotoY(goalY)
+  gotoX(goalX)
+  gotoZ(goalZ)
+end
+
+move.gotoXZY(goalX, goalY, goalZ)
+  gotoX(goalX)
+  gotoZ(goalZ)
+  gotoY(goalY)
+end
+
+move.gotoZXY(goalX, goalY, goalZ)
+  gotoZ(goalZ)
+  gotoX(goalX)
+  gotoY(goalY)
 end
