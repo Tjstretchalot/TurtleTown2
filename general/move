@@ -2,9 +2,97 @@ move = {}
 
 move.forward = function(times)
   times = times or 1
-  
+  position.load()
   for i=1,times,1 do
     while not turtle.forward() do end
+    if position.direction == 0 then position.x = position.x + 1
+    elseif position.direction == 1 then position.z = position.z + 1
+    elseif position.direction == 2 then position.x = position.x - 1
+    else position.z = position.z - 1 end
+  end
+end
+
+move.back = function(times)
+  times = times or 1
+  for i=1,times,1 do
+    while not turtle.back() do end
+    if position.direction == 0 then position.x = position.x - 1
+    elseif position.direction == 1 then position.z = position.z - 1
+    elseif position.direction == 2 then position.x = position.x + 1
+    else position.z = position.z + 1 end
     position.save()
   end
+end
+
+move.up = function(times)
+  times = times or 1
+  for i=1,times,1 do
+    while not turtle.up() do end
+    position.y = position.y + 1
+    position.save()
+  end
+end
+
+move.down = function(times)
+  times = times or 1
+  for i=1,times,1 do
+    while not turtle.down() do end
+    position.y = position.y - 1
+    position.save()
+  end
+end
+
+move.turnRight = function(times)
+  times = times or 1
+  for i=1,times,1 do
+    while not turtle.turnRight() do end
+    position.direction = (position.direction + 1) % 4
+    position.save()
+  end
+end
+
+move.turnLeft = function(times)
+  times = times or 1
+  for i=1,times,1 do
+    while not turtle.turnLeft() do end
+    position.direction = (position.direction + 3) % 4
+    position.save()
+  end
+end
+
+move.left = function(times)
+  move.turnLeft()
+  move.forward(times)
+end
+
+face = {}
+face.towards = function(direction)
+  while position.direction ~= direction do
+    move.turnLeft()
+  end
+end
+
+face.north = function() face.towards(3) end
+face.east = function() face.towards(0) end
+face.south = function() face.towards(1) end
+face.west = function() face.towards(2) end
+
+move.north = function(times)
+  face.north()
+  move.forward(times)
+end
+
+move.east = function(times)
+  face.east()
+  move.forward(times)
+end
+
+move.south = function(times)
+  face.south()
+  move.forward(times)
+end
+
+move.west = function(times)
+  face.west()
+  move.forward(times)
 end
