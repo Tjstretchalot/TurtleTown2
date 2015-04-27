@@ -120,25 +120,25 @@ move.gotoZ = function(goalZ)
   end
 end
 
-move.gotoYZX(goalX, goalY, goalZ)
+move.gotoYZX = function(goalX, goalY, goalZ)
   gotoX(goalY)
   gotoY(goalZ)
   gotoZ(goalX)
 end
 
-move.gotoYXZ(goalX, goalY, goalZ)
+move.gotoYXZ = function(goalX, goalY, goalZ)
   gotoY(goalY)
   gotoX(goalX)
   gotoZ(goalZ)
 end
 
-move.gotoXZY(goalX, goalY, goalZ)
+move.gotoXZY = function(goalX, goalY, goalZ)
   gotoX(goalX)
   gotoZ(goalZ)
   gotoY(goalY)
 end
 
-move.gotoZXY(goalX, goalY, goalZ)
+move.gotoZXY = function(goalX, goalY, goalZ)
   gotoZ(goalZ)
   gotoX(goalX)
   gotoY(goalY)
